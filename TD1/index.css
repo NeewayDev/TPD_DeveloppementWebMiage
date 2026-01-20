@@ -1,0 +1,38 @@
+body {
+    background-color: black;
+}
+
+h1, div {
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+.navbardroite {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.navbardroite div {
+    cursor: pointer;
+} 
+
+.section1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.section1droite {
+    width: 500px;
+    height: 400px;
+}
+
+.section1droite img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
