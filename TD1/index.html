@@ -2,35 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <script src="index.js" defer></script>
+    <title>Portfolio Oyindamola</title>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbargauche">
-            <h1>Oyindamola</h1>
+    <div class="menu-top" role="banner">
+        <div class="logo-text">Oyindamola</div>
+        <div class="toggle">
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
+            <div class="rectangle"></div>
         </div>
-        <div class="navbardroite">
-            <div>About me</div>
-            <div>Services</div>
-            <div>Contact me</div>
+        <div class="menu-links">
+            <div class="menu-link">About me</div>
+            <div class="menu-link">Services</div>
+            <div class="menu-link">Contact me</div>
         </div>
     </div>
 
-    <div class="section1">
-        <div class="section1gauche">
-            <h1>Hi, I am</h1>
-            <h1>Oyindamola</h1>
-            <p>FrontEnd Developer</p>
-            <div class="btns">
-                <button>Download CV</button>
-                <button>Learn More</button>
+    <div class="page">
+        <div class="intro">
+            <div class="intro-text">
+                <div class="intro-title">Hi, I am<br>Oyindamola Bakare</div>
+                <div class="intro-tag">Personal Developer</div>
+                <div class="intro-actions">
+                    <div class="button button-primary">Download CV</div>
+                    <div class="button button-ghost">Learn More</div>
+                </div>
+            </div>
+            <div class="intro-photo">
+                <div class="photo-circle"></div>
             </div>
         </div>
-        <div class="section1droite">
-            <img src="Logo_HandyAdvisor.png" alt="Image">
+
+        <div class="block block-about">
+            <div class="block-title">About</div>
+            <div class="block-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</div>
+            <div class="info-list">
+                <div class="info-item">
+                    <div class="info-dot"></div>
+                    <div class="info-title">FullName</div>
+                    <div class="info-sub">Your name goes here</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-dot"></div>
+                    <div class="info-title">Email Address</div>
+                    <div class="info-sub">Your email goes here</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-dot"></div>
+                    <div class="info-title">Skills</div>
+                    <div class="info-sub">Your skills goes here</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-dot"></div>
+                    <div class="info-title">Phone</div>
+                    <div class="info-sub">Your phone goes here</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block block-services">
+            <div class="block-title">What I do</div>
+            <div class="service-list">
+                <div class="service-card">
+                    <div class="service-icon">*</div>
+                    <div class="service-title">Software Development</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">DEV</div>
+                    <div class="service-title">Web Development</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">*</div>
+                    <div class="service-title">Web Design</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block block-skills">
+            <div class="block-title">My Skills</div>
+            <div class="skill-list">
+                <div class="skill-item">
+                    <div class="skill-number">50%</div>
+                    <div class="skill-label">HTML</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-number">20%</div>
+                    <div class="skill-label">CSS</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-number">10%</div>
+                    <div class="skill-label">JAVASCRIPT</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-number">2%</div>
+                    <div class="skill-label">PHP</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="block block-contact">
+            <div class="block-title">Get in touch</div>
+            <div class="form">
+                <div class="form-row">
+                    <div class="form-input">
+                        <input type="text" placeholder="First name"/>
+                    </div>
+                    <div class="form-input">
+                        <input type="text" placeholder="Last name"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-input">
+                        <input type="email" placeholder="Email address"/>
+                    </div>
+                    <div class="form-input">
+                        <input type="tel" placeholder="Phone number"/>
+                    </div>
+                </div>
+                <div class="form-message">
+                    <textarea placeholder="Your message"></textarea>
+                </div>
+                <div class="button button-primary">Send now</div>
+            </div>
         </div>
     </div>
+
+    <div class="page-footer">Copyright 2026</div>
 </body>
 </html>
