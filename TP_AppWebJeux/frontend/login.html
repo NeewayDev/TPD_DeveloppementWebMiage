@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameCenter - Authentification</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🎮 GameCenter</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="games.html">Nos Jeux</a></li>
+                <li><a href="login.html" class="btn-login active">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="auth-container">
+            <div id="login-box">
+                <h2>Connexion</h2>
+                <form id="form-login">
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Mot de passe</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Se connecter</button>
+                </form>
+                <p class="switch-text">
+                    Pas encore de compte ? <a href="#" id="show-register">S'inscrire</a>
+                </p>
+            </div>
+
+            <div id="register-box" class="hidden">
+                <h2>Inscription</h2>
+                <form id="form-register">
+                    <div class="input-group">
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-password">Mot de passe (6 car. min)</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-password-confirm">Confirmer mot de passe</label>
+                        <input type="password" id="reg-password-confirm" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Créer mon compte</button>
+                </form>
+                <p class="switch-text">
+                    Déjà un compte ? <a href="#" id="show-login">Se connecter</a>
+                </p>
+            </div>
+            
+            <div id="auth-message"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GameCenter - Projet Web MIAGE</p>
+    </footer>
+</body>
+</html>
