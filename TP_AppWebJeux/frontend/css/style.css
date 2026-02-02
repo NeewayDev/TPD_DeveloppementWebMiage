@@ -178,3 +178,48 @@ footer {
     font-weight: bold;
     min-height: 20px;
 }
+
+.msg-success {
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.msg-error {
+    color: #ff2e63;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.user-welcome {
+    display: block;
+    font-size: 1.2rem;
+    color: #e94560;
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.user-status {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin-bottom: 1.5rem;
+}
+
+.btn-logout {
+    background-color: #3f4e66 !important; 
+}
+
+.btn-logout:hover {
+    background-color: #2c3849 !important;
+}
+
+.btn-login.connected {
+    background-color: transparent;
+    border-color: #4caf50;
+    color: #4caf50;
+}
+
+.btn-login.connected:hover {
+    background-color: #4caf50;
+    color: white;
+}

@@ -21,7 +21,7 @@
     </header>
 
     <main>
-        <div class="auth-container">
+        <div id="auth-container" class="auth-container">
             <div id="login-box">
                 <h2>Connexion</h2>
                 <form id="form-login">
@@ -63,6 +63,16 @@
             </div>
             
             <div id="auth-message"></div>
+        </div>
+
+        <div id="user-logged-in" class="auth-container hidden">
+            <h2>Mon Profil</h2>
+            <p>
+                Bonjour,
+                <span id="user-email-display" class="user-welcome"></span>
+            </p>
+            <p class="user-status">Vous êtes actuellement connecté.</p>
+            <button id="btn-logout" class="btn-submit btn-logout">Se déconnecter</button>
         </div>
     </main>
 
