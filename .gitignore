@@ -1,0 +1,4 @@
+node_modules/
+**/node_modules/
+TP_AppWebJeux/backend/node_modules/
+TP_AppWebJeux/backend/.env

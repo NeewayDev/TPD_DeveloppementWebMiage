@@ -73,8 +73,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const formRegister = document.getElementById('form-register');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    const apiBase = window.location.port === '3000' ? '' : 'http://localhost:3000';
+
+    async function postJson(url, payload) {
+        const response = await fetch(`${apiBase}${url}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+            const message = data && data.message ? data.message : "Erreur serveur.";
+            throw new Error(message);
+        }
+        return data;
+    }
+
     if (formRegister) {
-        formRegister.addEventListener('submit', (e) => {
+        formRegister.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const email = document.getElementById('reg-email').value;
@@ -85,48 +102,42 @@ document.addEventListener('DOMContentLoaded', () => {
             if (password.length < 6) return setMessage("Le mot de passe doit faire au moins 6 caractères.", "error");
             if (password !== confirmPassword) return setMessage("Les mots de passe ne correspondent pas.", "error");
 
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            
-            if (users.find(u => u.email === email)) {
-                setMessage("Cet email est déjà utilisé.", "error");
-            } else {
-                users.push({ email, password, dateInscription: new Date().toISOString() });
-                localStorage.setItem('users', JSON.stringify(users));
-                
+            try {
+                await postJson('/api/register', { email, password });
                 setMessage("Inscription réussie ! Redirection vers la connexion...", "success");
-                
+
                 setTimeout(() => {
                     registerBox.classList.add('hidden');
                     loginBox.classList.remove('hidden');
                     setMessage("", "reset");
                 }, 1500);
+            } catch (error) {
+                setMessage(error.message, "error");
             }
         });
     }
 
     const formLogin = document.getElementById('form-login');
     if (formLogin) {
-        formLogin.addEventListener('submit', (e) => {
+        formLogin.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
 
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const user = users.find(u => u.email === email && u.password === password);
-
-            if (user) {
+            try {
+                const data = await postJson('/api/login', { email, password });
                 const sessionData = {
-                    email: user.email,
+                    email: data.email || email,
                     isConnected: true,
                     loginDate: new Date().toISOString()
                 };
                 sessionStorage.setItem('userSession', JSON.stringify(sessionData));
-                
+
                 setMessage("Connexion réussie !", "success");
                 setTimeout(() => window.location.reload(), 1000);
-            } else {
-                setMessage("Email ou mot de passe incorrect.", "error");
+            } catch (error) {
+                setMessage(error.message, "error");
             }
         });
     }
