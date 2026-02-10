@@ -1,0 +1,27 @@
+body {
+    background-color: #222;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    text-align: center;
+}
+
+canvas {
+    background-color: black;
+    border: 3px solid #e74c3c; /* Rouge Rock'n'Roll */
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+    cursor: crosshair;
+}
+
+#instructions {
+    margin-top: 10px;
+    color: #aaa;
+    font-size: 0.9em;
+}

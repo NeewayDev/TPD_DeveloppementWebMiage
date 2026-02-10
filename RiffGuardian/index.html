@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Riff Guardian: The Silence Slayer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/main.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h1>RIFF GUARDIAN</h1>
+        <canvas id="myCanvas" width="800" height="600"></canvas>
+        
+        <div id="debug-controls" style="margin-top: 15px; background: #333; padding: 10px; border-radius: 8px; border: 1px solid #555;">
+            <label style="margin-right: 20px; color: #4cd137; cursor: pointer;">
+                <input type="checkbox" id="cb-debug"> 🛠️ Afficher Vecteurs & Hitbox
+            </label>
+            <label style="color: #00a8ff; cursor: pointer;">
+                <input type="checkbox" id="cb-shield"> 🛡️ Activer Bouclier (Invincibilité + Rebond)
+            </label>
+        </div>
+
+        <div id="instructions">
+            ZQSD/Flèches pour bouger | Souris pour viser | Clic/Espace pour tirer
+        </div>
+    </div>
+</body>
+</html>
