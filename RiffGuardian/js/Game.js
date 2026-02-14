@@ -27,12 +27,15 @@ export default class Game {
 
         this.lastTime = 0;
         
-        // Gestion du Chrono
         this.levelTimer = 0;
         this.levelDuration = 10;
         
         this.enemySpawnTimer = 0;
         this.spawnRate = 2000;
+
+        // --- GESTION COULEUR FOND ---
+        this.bgHue = 0; // Teinte actuelle (0-360)
+        this.bgColor = "black"; 
 
         this.debugCheckbox = document.getElementById('cb-debug');
         this.shieldCheckbox = document.getElementById('cb-shield');
@@ -48,11 +51,23 @@ export default class Game {
         if (this.level === 1) {
             this.player = new Player(this.canvas.width / 2, this.canvas.height / 2);
             this.score = 0;
+            // Niveau 1 : Couleur aléatoire de départ
+            this.bgHue = Math.floor(Math.random() * 360);
         } else {
             this.player.x = this.canvas.width / 2;
             this.player.y = this.canvas.height / 2;
             this.player.bullets = []; 
+            
+            // --- ALGORITHME COULEUR ALÉATOIRE MAIS DISTINCTE ---
+            // On ajoute entre 120 et 240 degrés à la teinte précédente.
+            // Cela assure qu'on tombe sur une couleur radicalement opposée ou différente.
+            // (Ex: Rouge -> Vert/Bleu, jamais Rouge -> Orange)
+            let offset = 120 + Math.random() * 120;
+            this.bgHue = (this.bgHue + offset) % 360;
         }
+
+        // On génère la couleur CSS (Saturation 50% pour la couleur, Lightness 10% pour rester sombre)
+        this.bgColor = `hsl(${this.bgHue}, 50%, 10%)`;
 
         this.enemies = [];
         this.bullets = [];
@@ -63,14 +78,16 @@ export default class Game {
         this.spawnRate = 1800 * Math.pow(0.85, (this.level - 1));
         if (this.spawnRate < 250) this.spawnRate = 250;
         
-        console.log(`Niveau ${this.level}. Durée: ${this.levelDuration}s. Spawn: ${Math.floor(this.spawnRate)}ms`);
+        console.log(`Niveau ${this.level}. Fond: ${this.bgColor}. Spawn: ${Math.floor(this.spawnRate)}ms`);
     }
 
     loop(time) {
         let dt = time - this.lastTime;
         this.lastTime = time;
 
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        // On efface l'écran avec la couleur dynamique
+        this.ctx.fillStyle = this.bgColor;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         switch (this.currentGameState) {
             case this.gameStates.MENU:
@@ -103,12 +120,15 @@ export default class Game {
 
     drawTransition() {
         this.ctx.save();
-        this.ctx.fillStyle = "black";
+        // Fond semi-transparent noir pour la transition
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
         this.ctx.fillStyle = "#3498db";
         this.ctx.font = "40px Arial";
         this.ctx.textAlign = "center";
         this.ctx.fillText(`NIVEAU ${this.level} TERMINÉ`, this.canvas.width/2, this.canvas.height/2 - 20);
+        
         this.ctx.font = "20px Arial";
         this.ctx.fillStyle = "white";
         this.ctx.fillText(`Prochain niveau : ${10 + (this.level) * 2} secondes`, this.canvas.width/2, this.canvas.height/2 + 30);
@@ -258,12 +278,10 @@ export default class Game {
         this.player.draw(this.ctx);
         this.bullets.forEach(b => b.draw(this.ctx));
         
-        // CORRECTION ICI : On passe isDebug à TOUS les ennemis sans condition
         this.enemies.forEach(e => {
             e.draw(this.ctx, isDebug); 
         });
 
-        // HUD
         this.ctx.save();
         this.ctx.fillStyle = "white";
         this.ctx.font = "20px Arial";
@@ -294,15 +312,40 @@ export default class Game {
 
     drawGameOver() {
         this.ctx.save();
-        this.ctx.fillStyle = "red";
-        this.ctx.font = "50px Arial";
+        // Fond semi-transparent pour bien lire le texte
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
         this.ctx.textAlign = "center";
-        this.ctx.fillText("GAME OVER", this.canvas.width/2, 200);
+        
+        this.ctx.fillStyle = "#e74c3c";
+        this.ctx.font = "50px Arial";
+        this.ctx.fillText("GAME OVER", this.canvas.width/2, 100);
+        
         this.ctx.fillStyle = "white";
         this.ctx.font = "30px Arial";
-        this.ctx.fillText(`Final Score: ${this.score}`, this.canvas.width/2, 300);
+        this.ctx.fillText(`Score Final: ${this.score}`, this.canvas.width/2, 160);
+
+        // AFFICHER LE TOP 5
+        this.ctx.fillStyle = "#f1c40f"; // Or
+        this.ctx.font = "25px Arial";
+        this.ctx.fillText("🏆 TOP SCORES 🏆", this.canvas.width/2, 220);
+
         this.ctx.font = "20px Arial";
-        this.ctx.fillText("Entrée pour Menu", this.canvas.width/2, 400);
+        this.ctx.fillStyle = "#bdc3c7"; // Argent
+        
+        // On récupère les scores à jour du localStorage au cas où
+        let scores = JSON.parse(localStorage.getItem('riffGuardianScores')) || [];
+        
+        scores.slice(0, 5).forEach((s, index) => {
+            let yPos = 260 + (index * 30);
+            this.ctx.fillText(`${index + 1}. ${s} pts`, this.canvas.width/2, yPos);
+        });
+
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "20px Arial";
+        this.ctx.fillText("Entrée pour Menu", this.canvas.width/2, 450);
+        
         this.ctx.restore();
     }
 }
