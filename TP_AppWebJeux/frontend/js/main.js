@@ -1,4 +1,29 @@
+// --- Fonction globale pour ouvrir un jeu en plein écran ---
+function openGame(btn) {
+    const card = btn.closest('.game-card');
+    const url = card.dataset.gameUrl;
+    const container = document.getElementById('game-fullscreen');
+    const iframe = document.getElementById('game-iframe');
+    iframe.src = url;
+    container.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- GAME FULLSCREEN ---
+    const gameFullscreen = document.getElementById('game-fullscreen');
+    const gameIframe = document.getElementById('game-iframe');
+    const closeGameBtn = document.getElementById('close-game');
+
+    if (closeGameBtn) {
+        closeGameBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            gameFullscreen.classList.add('hidden');
+            gameIframe.src = '';
+            document.body.style.overflow = '';
+        });
+    }
 
     // --- GESTION ÉTAT CONNEXION (GLOBAL) ---
     const userSession = JSON.parse(sessionStorage.getItem('userSession'));

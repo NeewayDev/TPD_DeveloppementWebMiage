@@ -75,10 +75,13 @@ app.post("/api/login", async (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 3000);
+// Serve RiffGuardian game files
+app.use("/games/riff-guardian", express.static(path.join(__dirname, "..", "..", "RiffGuardian")));
 
 app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "frontend", "index.html"));
 });
+
+app.listen(process.env.PORT || 3000);

@@ -25,9 +25,27 @@
             <p class="subtitle">Sélectionnez un jeu et tentez de battre le record !</p>
             
             <div id="games-list" class="games-grid">
+
+                <div class="game-card" data-game-url="/games/riff-guardian/index.html">
+                    <div class="game-card-image">🎸</div>
+                    <div class="game-card-info">
+                        <h3>Riff Guardian</h3>
+                        <p>Défendez le monde contre le silence ! Tirez sur les ennemis au rythme du rock.</p>
+                        <span class="game-tag">Action / Shooter</span>
+                    </div>
+                    <button class="btn-play" onclick="openGame(this)">▶ Jouer</button>
                 </div>
+
+            </div>
         </section>
+
     </main>
+
+    <!-- Plein écran pour jouer -->
+    <div id="game-fullscreen" class="game-fullscreen hidden">
+        <a id="close-game" class="btn-back-game" href="#">← Retour aux jeux</a>
+        <iframe id="game-iframe" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
 
     <footer>
         <p>&copy; 2026 GameCenter - Projet Web MIAGE</p>
